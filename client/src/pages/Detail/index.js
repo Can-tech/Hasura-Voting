@@ -19,7 +19,11 @@ const Detail = () => {
       },
     }
   );
-  const [newVote, { loading: loadingVote }] = useMutation(NEW_VOTE_MUTATION);
+  const [newVote, { loading: loadingVote }] = useMutation(NEW_VOTE_MUTATION, {
+    onCompleted: () => {
+      setIsVoted(true);
+    },
+  });
   const handleClickVote = (optionId) => {
     newVote({
       variables: {
@@ -59,21 +63,25 @@ const Detail = () => {
               onChange={({ target }) => setSelectedOptionId(target.value)}
             />
             <span>{option.title}</span>
-            <span className={style.voteCount}>
-              (%
-              {(
-                (option.votes_aggregate.aggregate.count * 100) /
-                (total === 0 ? 1 : total)
-              ).toFixed(2)}
-              )
-            </span>
+            {isVoted && (
+              <span className={style.voteCount}>
+                (%
+                {(
+                  (option.votes_aggregate.aggregate.count * 100) /
+                  (total === 0 ? 1 : total)
+                ).toFixed(2)}
+                )
+              </span>
+            )}
           </label>
-          <div>
-            <progress
-              value={option.votes_aggregate.aggregate.count}
-              max={total}
-            />
-          </div>
+          {isVoted && (
+            <div>
+              <progress
+                value={option.votes_aggregate.aggregate.count}
+                max={total}
+              />
+            </div>
+          )}
         </div>
       ))}
       {!isVoted && (
