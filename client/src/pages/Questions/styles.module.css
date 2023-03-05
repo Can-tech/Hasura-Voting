@@ -1,0 +1,16 @@
+.questionsHeaders {
+  background-color: #293241;
+  padding: 1em;
+  border: #e0fbfc solid 2px;
+  margin: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #e0fbfc;
+  width: 40vw;
+}
+.questionsHeaders > * {
+  text-decoration: none;
+}
+.questionsHeaders:hover {
+  background-color: #293551;
+}

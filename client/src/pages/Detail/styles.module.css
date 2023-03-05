@@ -1,0 +1,12 @@
+.buttonVote {
+  padding: 1em;
+  margin-top: 1em;
+  border-style: none;
+  border-radius: 10px;
+  background-color: #293241;
+  color: #e0fbfc;
+}
+.voteCount {
+  font-size: 16px;
+  margin-left: 4px;
+}
